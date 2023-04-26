@@ -21,7 +21,7 @@ mnist = tf.keras.datasets.fashion_mnist
 x_train[0].shape
 
 import matplotlib.pyplot as plt
-plt.imshow(x_train[0])
+#plt.imshow(x_train[0])
 print(y_train[0])
 
 x_train  = x_train / 255.0
