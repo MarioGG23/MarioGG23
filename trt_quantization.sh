@@ -2,7 +2,7 @@
 
 #FP32
 /usr/src/tensorrt/bin/trtexec --onnx=/home/rhernandez/Desktop/modelos/practica/casia-best_model.onnx --saveEngine=/home/rhernandez/Desktop/modelos/casia_batch1_fp32.trt
-/usr/src/tensorrt/bin/trtexec --loadEngine=/home/rhernandez/Desktop/modelos/casia_batch1_fp32.trt
+#/usr/src/tensorrt/bin/trtexec --loadEngine=/home/rhernandez/Desktop/modelos/casia_batch1_fp32.trt
 
 #FP16
 #/usr/src/tensorrt/bin/trtexec --onnx=/home/nano/resnet50_onnx.onnx --saveEngine=/home/nano/trt_models/resnet50_batch1_fp16.trt --fp16
