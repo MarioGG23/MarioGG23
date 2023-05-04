@@ -1,7 +1,7 @@
 #Quantization
 
 #FP32
-/usr/src/tensorrt/bin/trtexec --onnx=/home/rhernandez/Desktop/practica/casia-best_model.onnx --saveEngine=/home/rhernandez/Desktop/casia_batch1_fp32.trt
+/usr/src/tensorrt/bin/trtexec --onnx=/home/rhernandez/Desktop/practica/casia.onnx --saveEngine=/home/rhernandez/Desktop/casia_batch1_fp32.trt
 /usr/src/tensorrt/bin/trtexec --loadEngine=/home/rhernandez/Desktop/casia_batch1_fp32.trt
 
 #FP16
