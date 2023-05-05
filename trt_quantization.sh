@@ -1,7 +1,7 @@
 #Quantization
 
 #FP32
-/usr/src/tensorrt/bin/trtexec --onnx=/home/rhernandez/Desktop/practica/casia.onnx.onnx --shapes=input:1x3x128x128 --saveEngine=/home/rhernandez/Desktop/practica/casia32.trt
+/usr/src/tensorrt/bin/trtexec --onnx=/home/rhernandez/Desktop/practica/casia.onnx --shapes=input:1x3x128x128 --saveEngine=/home/rhernandez/Desktop/practica/casia32.trt
 
 #/usr/src/tensorrt/bin/trtexec --onnx=/home/rhernandez/Desktop/practica/casia.onnx --fp16 --force-implicit-batch --output=/home/rhernandez/Desktop/practica/casia_fp16.trt --verbose --minShapes=input_1:1x3x224x224 --optShapes=input_1:16x3x224x224 --maxShapes=input_1:32x3x224x224
 #/usr/src/tensorrt/bin/trtexec --onnx=/home/rhernandez/Desktop/practica/casia.onnx --saveEngine=/home/rhernandez/Desktop/casia_batch1_fp32.trt
