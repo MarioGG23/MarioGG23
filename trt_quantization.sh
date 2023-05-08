@@ -4,7 +4,7 @@
 #/usr/src/tensorrt/bin/trtexec --onnx=/home/rhernandez/Desktop/practica/casia.onnx --shapes=input:1x3x128x128 --saveEngine=/home/rhernandez/Desktop/practica/casia32.trt
 
 #/usr/src/tensorrt/bin/trtexec --onnx=/home/rhernandez/Desktop/practica/iit.onnx --fp16 --verbose --minShapes=input_1:1x3x128x128 --optShapes=input_1:16x3x128x128 --maxShapes=input_1:32x3x128x128
-/usr/src/tensorrt/bin/trtexec --onnx=/home/rhernandez/Desktop/practica/iit.onnx --verbose --saveEngine=/home/rhernandez/Desktop/iit_batch1_fp32.trt
+/usr/src/tensorrt/bin/trtexec --onnx=/home/rhernandez/Desktop/practica/casia-best_model.onnx --verbose --saveEngine=/home/rhernandez/Desktop/casia_batch1_fp32.trt
 #/usr/src/tensorrt/bin/trtexec --loadEngine=/home/rhernandez/Desktop/casia_batch1_fp32.trt
 
 #FP16
