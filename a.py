@@ -7,8 +7,8 @@ ubicacion1 = '/home/rhernandez/onnx_models/' + modelo + '.onnx'
 ubicacion1_sinext = ubicacion1.split('.')
 
 #trt = aux2 + 'trt_quantization.txt' #aux 2 es donde se va a guardar el trt
-ruta = '/Users/thadliguerra/Desktop/trt_sh/'
-#ruta = '/home/rhernandez/trt_sh/'
+#ruta = '/Users/thadliguerra/Desktop/trt_sh/'
+ruta = '/home/rhernandez/trt_sh/'
 
 if tipo == 'fp32':
     trt =  ruta + 'trt_quantization_' + tipo + '_' + modelo + '.txt'
