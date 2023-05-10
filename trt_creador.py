@@ -22,6 +22,11 @@ for modelo in modelos:
         
         for tipo in tipos:
             trt =  ruta + 'trt_quantization_' + tipo + '_' + modelo + '_' + batch_size + '.txt'
+            try:
+                os.mkdir(ruta_modelos_trt)
+            except FileExistsError:
+                print("Carpeta 2 ya creada") 
+                
             ubicacion2 = ruta_modelos_trt + modelo + '_batch1_' + tipo + '.trt'
             linea1 = '/usr/src/tensorrt/bin/trtexec --onnx=' + ubicacion1 + ' --saveEngine=' + ubicacion2
             linea2 = '/usr/src/tensorrt/bin/trtexec --loadEngine=' + ubicacion2
