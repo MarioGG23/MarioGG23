@@ -2,7 +2,7 @@ import os
 import pathlib
 #ruta = pathlib.Path().absolute()
 #ruta = str(ruta) + '/trt_sh/' #carpeta en donde se guardaran los .sh
-ruta = '/home/rhernandez/trt_sh' #carpeta en donde se guardaran los .sh
+ruta = '/home/rhernandez/trt_sh/' #carpeta en donde se guardaran los .sh
 ruta_modelos = '/home/rhernandez/onnx_models/' #ruta de los modelos .onnx
 ruta_modelos_trt = '/home/rhernandez/modelos_trt/' # ruta en donde se guardaran los modelos trt
 
