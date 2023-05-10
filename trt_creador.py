@@ -49,5 +49,6 @@ for modelo in modelos:
             trt_sh = trtaux[0] + '.sh'
             os.rename(trt, trt_sh)
             comando = 'cd ' + ruta_modelos_trt + ' && sh ' + 'trt_quantization_' + tipo + '_' + modelo + '_' + batch_size + '.sh'
-            os.system(comando)
+            print(comando)
+            #os.system(comando)
 
