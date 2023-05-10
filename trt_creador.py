@@ -10,6 +10,11 @@ try:
     os.mkdir(ruta)
 except FileExistsError:
     print("Carpeta ya creada")  
+    
+try:
+    os.mkdir(ruta_modelos_trt)
+except FileExistsError:
+    pass
 
 modelos = ['casia', 'polyu', 'syntheticspvd', 'vera', 'iit', 'put', 'tongji']
 tipos = ['fp32', 'fp16', 'int8']
@@ -22,10 +27,7 @@ for modelo in modelos:
         
         for tipo in tipos:
             trt =  ruta + 'trt_quantization_' + tipo + '_' + modelo + '_' + batch_size + '.txt'
-            try:
-                os.mkdir(ruta_modelos_trt)
-            except FileExistsError:
-                pass
+
 
             ubicacion2 = ruta_modelos_trt + modelo + '_batch1_' + tipo + '.trt'
             linea1 = '/usr/src/tensorrt/bin/trtexec --onnx=' + ubicacion1 + ' --saveEngine=' + ubicacion2
