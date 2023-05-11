@@ -16,7 +16,7 @@ try:
 except FileExistsError:
     pass
 
-modelos = ['casia', 'polyu', 'syntheticspvd', 'vera', 'iit', 'put', 'tongji']
+modelos = ['casia', 'polyu', 'vera', 'iit', 'put', 'tongji']
 tipos = ['fp32', 'fp16', 'int8']
 batch_size_array = ['8', '16' ,'32', '1']  # ['1']  
 
