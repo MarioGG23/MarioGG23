@@ -1,8 +1,8 @@
 import os
 import pathlib
-#ruta = pathlib.Path().absolute()
-#ruta = str(ruta) + '/trt_sh/' #carpeta en donde se guardaran los .sh
-ruta = '/home/rhernandez/trt_sh/' #carpeta en donde se guardaran los .sh
+ruta = pathlib.Path().absolute()
+ruta = str(ruta) + '/trt_sh/' #carpeta en donde se guardaran los .sh
+#ruta = '/home/rhernandez/trt_sh/' #carpeta en donde se guardaran los .sh
 ruta_modelos = '/home/rhernandez/onnx_models/' #ruta de los modelos .onnx
 ruta_modelos_trt = '/home/rhernandez/modelos_trt/' # ruta en donde se guardaran los modelos trt
 
@@ -11,10 +11,10 @@ try:
 except FileExistsError:
     print("Carpeta ya creada")  
     
-try:
+"""try:
     os.mkdir(ruta_modelos_trt)
 except FileExistsError:
-    pass
+    pass"""
 
 modelos = ['casia', 'polyu', 'vera', 'iit', 'put', 'tongji']
 tipos = ['fp32', 'fp16', 'int8']
@@ -31,7 +31,7 @@ for modelo in modelos:
             
             if batch_size in ['8', '16', '32']:
                 ubicacion2_db = ruta_modelos_trt + modelo + '_batch' + batch_size + '_' + tipo + '.trt'
-                if modelo =='iit' or modelo == 'syntheticspvd':
+                if modelo =='iit':
                     linea1 = '/usr/src/tensorrt/bin/trtexec --onnx=' + ubicacion1_db + ' --saveEngine=' + ubicacion2_db + " --shapes=\'image'\:" + batch_size + 'x64x64'
                     linea2 = '/usr/src/tensorrt/bin/trtexec --loadEngine=' + ubicacion2_db + ' > ' + modelo + '_batch' + batch_size + '_' + tipo + '.txt'
                 else:
@@ -52,5 +52,6 @@ for modelo in modelos:
             trt_sh = trtaux[0] + '.sh'
             os.rename(trt, trt_sh)
             comando = 'cd ' + ruta + ' && sh ' + 'trt_quantization_' + tipo + '_' + modelo + '_' + batch_size + '.sh'
-            os.system(comando)
+            print(comando)
+            #os.system(comando)
 
