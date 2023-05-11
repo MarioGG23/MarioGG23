@@ -18,7 +18,7 @@ except FileExistsError:
 
 modelos = ['casia', 'polyu', 'syntheticspvd', 'vera', 'iit', 'put', 'tongji']
 tipos = ['fp32', 'fp16', 'int8']
-batch_size_array = ['normal'] #['8', '16' ,'32', 'normal']
+batch_size_array = ['normal']  #['8', '16' ,'32', '1'] 
 
 for modelo in modelos:
     ubicacion1 = ruta_modelos + modelo + '.onnx' #onnx
@@ -27,22 +27,21 @@ for modelo in modelos:
         
         for tipo in tipos:
             trt =  ruta + 'trt_quantization_' + tipo + '_' + modelo + '_' + batch_size + '.txt'
-
-
-            ubicacion2 = ruta_modelos_trt + modelo + '_batch1_' + tipo + '.trt'
-            linea1 = '/usr/src/tensorrt/bin/trtexec --onnx=' + ubicacion1 + ' --saveEngine=' + ubicacion2
-            linea2 = '/usr/src/tensorrt/bin/trtexec --loadEngine=' + ubicacion2
-           
             file = open(trt, "w")
-            file.write(linea1 + os.linesep)
-            file.write(linea2)
-
+            
             if batch_size in ['8', '16', '32']:
                 ubicacion2_db = ruta_modelos_trt + modelo + '_batch' + batch_size + '_' + tipo + '.trt'
-                linea3 = '/usr/src/tensorrt/bin/trtexec --onnx=' + ubicacion1_db + ' --saveEngine=' + ubicacion2_db + ' --shapes=\'input\':' + batch_size + 'x128x128'
-                linea4 = '/usr/src/tensorrt/bin/trtexec --loadEngine=' + ubicacion2_db
-                file.write(os.linesep + linea3 + os.linesep )
-                file.write(linea4)
+                linea1 = '/usr/src/tensorrt/bin/trtexec --onnx=' + ubicacion1_db + ' --saveEngine=' + ubicacion2_db + ' --shapes=\'input\':' + batch_size + 'x128x128'
+                linea2 = '/usr/src/tensorrt/bin/trtexec --loadEngine=' + ubicacion2_db + ' > ' + modelo + '_batch' + batch_size + '_' + tipo + '.txt'
+                file.write(linea1 + os.linesep)
+                file.write(linea2)
+            else:
+                ubicacion2 = ruta_modelos_trt + modelo + '_batch1_' + tipo + '.trt'
+                linea1 = '/usr/src/tensorrt/bin/trtexec --onnx=' + ubicacion1 + ' --saveEngine=' + ubicacion2
+                linea2 = '/usr/src/tensorrt/bin/trtexec --loadEngine=' + ubicacion2 + ' > ' + modelo + '_batch1_' + tipo + '.txt'
+                file.write(linea1 + os.linesep)
+                file.write(linea2)
+
 
             file.close()
             trtaux = trt.split('.')
