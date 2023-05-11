@@ -18,7 +18,7 @@ except FileExistsError:
 
 modelos = ['casia', 'polyu', 'syntheticspvd', 'vera', 'iit', 'put', 'tongji']
 tipos = ['fp32', 'fp16', 'int8']
-batch_size_array = ['8', '16' ,'32', '1']  # ['normal']  
+batch_size_array = ['8', '16' ,'32', '1']  # ['1']  
 
 for modelo in modelos:
     ubicacion1 = ruta_modelos + modelo + '.onnx' #onnx
@@ -32,10 +32,10 @@ for modelo in modelos:
             if batch_size in ['8', '16', '32']:
                 ubicacion2_db = ruta_modelos_trt + modelo + '_batch' + batch_size + '_' + tipo + '.trt'
                 if modelo =='iit' or modelo == 'syntheticspvd':
-                    linea1 = '/usr/src/tensorrt/bin/trtexec --onnx=' + ubicacion1_db + ' --saveEngine=' + ubicacion2_db + " --shapes=\'input'\:" + batch_size + 'x64x64'
+                    linea1 = '/usr/src/tensorrt/bin/trtexec --onnx=' + ubicacion1_db + ' --saveEngine=' + ubicacion2_db + " --shapes=\'image'\:" + batch_size + 'x64x64'
                     linea2 = '/usr/src/tensorrt/bin/trtexec --loadEngine=' + ubicacion2_db + ' > ' + modelo + '_batch' + batch_size + '_' + tipo + '.txt'
                 else:
-                    linea1 = '/usr/src/tensorrt/bin/trtexec --onnx=' + ubicacion1_db + ' --saveEngine=' + ubicacion2_db + " --shapes=\'input'\:" + batch_size + 'x128x128'
+                    linea1 = '/usr/src/tensorrt/bin/trtexec --onnx=' + ubicacion1_db + ' --saveEngine=' + ubicacion2_db + " --shapes=\'image'\:" + batch_size + 'x128x128'
                     linea2 = '/usr/src/tensorrt/bin/trtexec --loadEngine=' + ubicacion2_db + ' > ' + modelo + '_batch' + batch_size + '_' + tipo + '.txt'
                 file.write(linea1 + os.linesep)
                 file.write(linea2)
@@ -52,6 +52,5 @@ for modelo in modelos:
             trt_sh = trtaux[0] + '.sh'
             os.rename(trt, trt_sh)
             comando = 'cd ' + ruta + ' && sh ' + 'trt_quantization_' + tipo + '_' + modelo + '_' + batch_size + '.sh'
-            #print(comando)
-            #os.system(comando)
+            os.system(comando)
 
